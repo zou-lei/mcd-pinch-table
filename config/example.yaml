@@ -1,0 +1,26 @@
+# 麦麦拼桌配置示例（复制为 config/local.yaml 使用）
+# 注意：local.yaml 已在 .gitignore 中忽略，请勿提交真实敏感信息。
+
+# 门店关键词（用于 query-nearby-stores）
+store_keyword: "南京西路"
+
+# 就餐方式：pickup=到店自取 / delivery=外送
+order_type: pickup
+
+# 默认使用的优惠券 couponId（留空则不算券）
+default_coupon_id: ""
+
+# 订单备注
+remark: ""
+
+# 拼单成员
+members:
+  - name: 小明
+    items: [巨无霸, 可乐]
+    share: 1            # 1 = 正常分摊
+  - name: 小红
+    items: [麦辣鸡腿堡, 薯条]
+    share: 0            # 0 = 被请客，不参与分摊
+  - name: 小刚
+    items: [板烧鸡腿堡]
+    share: 1

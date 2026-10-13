@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="220" viewBox="0 0 1200 220" font-family="'PingFang SC','Microsoft YaHei',sans-serif">
+  <rect width="1200" height="220" fill="#fffdf8"/>
+  <defs>
+    <marker id="arw" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 z" fill="#DA291C"/>
+    </marker>
+  </defs>
+  <text x="30" y="40" font-size="15" font-weight="700" fill="#8a8a8a" letter-spacing="2">拼单调用链 · 麦当劳 MCP (Streamable HTTP)</text>
+
+  <g transform="translate(30,66)">
+    <rect width="200" height="94" rx="14" fill="#ffffff" stroke="#F0D9C8" stroke-width="2"/>
+    <rect width="200" height="7" rx="3.5" fill="#DA291C"/>
+    <text x="100" y="46" text-anchor="middle" font-size="14.5" font-weight="700" fill="#DA291C" font-family="monospace">query-nearby-stores</text>
+    <text x="100" y="72" text-anchor="middle" font-size="14" fill="#666666">查门店</text>
+  </g>
+  <line x1="232" y1="113" x2="262" y2="113" stroke="#DA291C" stroke-width="3" marker-end="url(#arw)"/>
+
+  <g transform="translate(265,66)">
+    <rect width="200" height="94" rx="14" fill="#ffffff" stroke="#F0D9C8" stroke-width="2"/>
+    <rect width="200" height="7" rx="3.5" fill="#DA291C"/>
+    <text x="100" y="46" text-anchor="middle" font-size="14.5" font-weight="700" fill="#DA291C" font-family="monospace">query-meals</text>
+    <text x="100" y="72" text-anchor="middle" font-size="14" fill="#666666">取菜单</text>
+  </g>
+  <line x1="467" y1="113" x2="497" y2="113" stroke="#DA291C" stroke-width="3" marker-end="url(#arw)"/>
+
+  <g transform="translate(500,66)">
+    <rect width="200" height="94" rx="14" fill="#ffffff" stroke="#F0D9C8" stroke-width="2"/>
+    <rect width="200" height="7" rx="3.5" fill="#DA291C"/>
+    <text x="100" y="46" text-anchor="middle" font-size="14.5" font-weight="700" fill="#DA291C" font-family="monospace">query-meal-detail</text>
+    <text x="100" y="72" text-anchor="middle" font-size="14" fill="#666666">补名称/详情</text>
+  </g>
+  <line x1="702" y1="113" x2="732" y2="113" stroke="#DA291C" stroke-width="3" marker-end="url(#arw)"/>
+
+  <g transform="translate(735,66)">
+    <rect width="200" height="94" rx="14" fill="#ffffff" stroke="#F0D9C8" stroke-width="2"/>
+    <rect width="200" height="7" rx="3.5" fill="#DA291C"/>
+    <text x="100" y="46" text-anchor="middle" font-size="14.5" font-weight="700" fill="#DA291C" font-family="monospace">calculate-price</text>
+    <text x="100" y="72" text-anchor="middle" font-size="14" fill="#666666">算价/分摊</text>
+  </g>
+  <line x1="937" y1="113" x2="967" y2="113" stroke="#DA291C" stroke-width="3" marker-end="url(#arw)"/>
+
+  <g transform="translate(970,66)">
+    <rect width="200" height="94" rx="14" fill="#FFC72C" stroke="#E5B31F" stroke-width="2"/>
+    <rect width="200" height="7" rx="3.5" fill="#DA291C"/>
+    <text x="100" y="46" text-anchor="middle" font-size="14.5" font-weight="700" fill="#8a5a00" font-family="monospace">create-order</text>
+    <text x="100" y="72" text-anchor="middle" font-size="14" fill="#8a5a00">一键下单</text>
+  </g>
+</svg>

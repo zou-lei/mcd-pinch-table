@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#C8102E"/>
+      <stop offset="52%" stop-color="#DA291C"/>
+      <stop offset="100%" stop-color="#FFC72C"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="300" fill="url(#bg)"/>
+  <circle cx="1030" cy="40" r="200" fill="url(#glow)"/>
+  <circle cx="90" cy="320" r="170" fill="#ffffff" opacity="0.05"/>
+  <circle cx="420" cy="-40" r="120" fill="#ffffff" opacity="0.05"/>
+
+  <g transform="translate(1010,158)">
+    <circle r="100" fill="#ffffff" opacity="0.13"/>
+    <circle r="82" fill="#ffffff" opacity="0.10"/>
+    <g>
+      <path d="M-64 -18 a64 40 0 0 1 128 0 z" fill="#F5B942"/>
+      <rect x="-70" y="-14" width="140" height="12" rx="6" fill="#7BC043"/>
+      <rect x="-64" y="2" width="128" height="20" rx="10" fill="#8A4B2A"/>
+      <path d="M-70 26 h140 a70 70 0 0 1 -140 0 z" fill="#E59B34"/>
+      <circle cx="-24" cy="-36" r="3" fill="#fff8e6"/>
+      <circle cx="4" cy="-44" r="3" fill="#fff8e6"/>
+      <circle cx="32" cy="-34" r="3" fill="#fff8e6"/>
+    </g>
+  </g>
+
+  <text x="80" y="112" font-size="19" letter-spacing="6" fill="#ffffff" opacity="0.85">MCD PINCH TABLE</text>
+  <text x="74" y="188" font-size="72" font-weight="800" fill="#ffffff">麦麦拼桌</text>
+  <text x="80" y="234" font-size="24" fill="#ffffff" opacity="0.92">办公室一键拼麦 · AI 凑单 / 算分摊 / 一键下单</text>
+</svg>
