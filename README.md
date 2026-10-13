@@ -141,6 +141,7 @@ mcd-pinch-table/
     ├── banner.svg             # 项目 banner
     ├── flow.svg               # 调用链示意图
     ├── pinch-card-demo.*      # 分享卡片示例
+    ├── CODE_REVIEW.md         # 代码审查报告（含生产环境实测与回归结果）
     └── signup-issue.md        # 报名 Issue 文案
 ```
 
