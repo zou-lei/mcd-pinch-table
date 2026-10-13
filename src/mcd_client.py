@@ -140,7 +140,16 @@ class McdMcpClient:
         )
         if res and res.get("error"):
             raise McpError(f"工具 {name} 调用失败：{res['error']}")
-        return res.get("result") if res else None
+        result = res.get("result") if res else None
+        # 麦当劳 MCP 的业务错误不在 JSON-RPC 的 error 字段，而在业务体里：
+        #   {"success": false, "code": 60006, "message": "商品已售罄...", "traceId": "..."}
+        # 若不拦截，调用方会拿到空 data 并静默算出 ¥0，因此这里统一抛错。
+        payload = self.extract_json(result)
+        if isinstance(payload, dict) and payload.get("success") is False:
+            raise McpError(
+                f"{name} 业务失败（code={payload.get('code')}）：{payload.get('message')}"
+            )
+        return result
 
     @staticmethod
     def extract_json(result: Any) -> Any:

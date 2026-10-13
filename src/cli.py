@@ -86,7 +86,7 @@ def cmd_pinch(args: argparse.Namespace) -> int:
     client = _client()
     members = _parse_members(args.people)
     table = PinchTable(client)
-    print(f"正在解析门店「{args.city} {args.keyword}」与菜单（首次会逐个拉取餐品名称，请稍候）…")
+    print(f"正在解析门店「{args.city} {args.keyword}」与菜单…")
     try:
         result = table.run(
             city=args.city,
@@ -105,7 +105,7 @@ def cmd_pinch(args: argparse.Namespace) -> int:
     print("\n[餐品]")
     for it in result.order_items:
         print(f"  {it['quantity']} × {it['productName']}  ¥{it['subtotal_yuan']}")
-    print(f"\n应付总额：¥{result.price_yuan}   优惠：¥{result.discount_yuan}")
+    print(f"\n应付总额：¥{result.price_yuan}   已享优惠：¥{result.discount_yuan}（含在商品优惠价内）")
 
     print("\n[分摊]")
     for name, amount in result.split.items():
@@ -122,7 +122,7 @@ def cmd_pinch(args: argparse.Namespace) -> int:
         _pp(result.order)
         print("\n⚠️ 请通过订单返回的支付链接完成付款。")
     else:
-        ways = "/".join(t.get("code", "") for t in result.take_way_list) or "take-in-store"
+        ways = "/".join(f"{t.get('code')}={t.get('title')}" for t in result.take_way_list) or "eat-in=堂食，take-in-store=外带"
         print(f"\n（dry-run 模式：未真实下单。加 --confirm 才会创建订单；用餐方式用 --take-way 选择，可选：{ways}）")
     return 0
 
@@ -185,7 +185,7 @@ def build_parser() -> argparse.ArgumentParser:
         required=True,
         help="格式：'小明:巨无霸+可乐,小红:麦辣鸡腿堡+薯条*,小刚:板烧鸡腿堡'（结尾*表示被请客）",
     )
-    p_pinch.add_argument("--take-way", default="take-in-store", help="用餐方式：take-in-store外带 / eat-in堂食")
+    p_pinch.add_argument("--take-way", default="take-in-store", help="用餐方式：eat-in=堂食，take-in-store=外带（店内自提）")
     p_pinch.add_argument("--remark", default="", help="订单备注")
     p_pinch.add_argument("--confirm", action="store_true", help="真实下单（默认仅算价）")
     p_pinch.set_defaults(func=cmd_pinch)

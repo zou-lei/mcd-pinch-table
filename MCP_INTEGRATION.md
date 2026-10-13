@@ -20,12 +20,14 @@
 | 顺序 | Tool 名 | 用途 |
 |---:|---|---|
 | 1 | `query-nearby-stores` | 按关键词/地址查可点餐门店 |
-| 2 | `query-meals` | 拉取门店在售餐品菜单 |
-| 3 | `query-meal-detail` | 查套餐组成，校验可替换项 |
-| 4 | `query-store-coupons` | 查该门店可用优惠券 |
-| 5 | `calculate-price` | 算价：商品金额、配送费、优惠抵扣、应付总额 |
-| 6 | `create-order` | 创建订单，返回订单详情与支付链接 |
-| 7 | `query-order` | 查订单状态（可选） |
+| 2 | `query-meals` | 拉取门店在售菜单（`data.meals` 含全部餐品的名称与价格，一次取回） |
+| 3 | `calculate-price` | 算价：商品原价合计、优惠抵扣、应付总额、可选用餐方式 |
+| 4 | `create-order` | 创建订单，返回订单详情与支付链接 |
+| 5 | `query-order` | 查订单状态（可选） |
+
+> **算价字段说明（重要）**：`calculate-price` 返回的 `price` 是**优惠前**原价合计，
+> `discount` 是优惠金额且**未从 `price` 中扣减**，因此**真实应付 = `price` − `discount`**；
+> `productList[].subtotal` 则是**已优惠后**的商品小计。代码已按此语义实现分摊。
 
 ### 2.2 自动化管家（`src/autopilot.py`）
 
@@ -55,11 +57,13 @@ cli.py  ──►  McdMcpClient（initialize → tools/call）
      │            ▼
      │      麦当劳 MCP Server
      │
-     ├─ pinch 流程:  stores → meals → meal-detail → coupons → calculate-price → create-order
-     └─ report 流程: auto-bind-coupons → campaign-calendar → query-my-account → query-my-coupons
+    ├─ pinch 流程:  stores → meals → calculate-price → create-order
+    └─ report 流程: auto-bind-coupons → campaign-calendar → query-my-account → query-my-coupons
 ```
 
 **协议细节**：客户端先发送 `initialize`（protocolVersion `2025-06-18`），从响应头 `Mcp-Session-Id` 维护会话，随后发送 `notifications/initialized`，再通过 `tools/call` 调用业务工具。响应兼容 `application/json` 与 `text/event-stream` 两种格式。
+
+**错误处理**：麦当劳 MCP 的业务错误位于响应体内（`{"success": false, "code": ..., "message": ...}`）而非 JSON-RPC 的 `error` 字段，客户端已统一拦截并抛出 `McpError`，避免调用方静默拿到空数据。
 
 ## 4. 业务价值
 
